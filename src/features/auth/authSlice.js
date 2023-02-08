@@ -11,6 +11,7 @@ const initialState = {
   isLoading: true,
   isError: false,
   error: "",
+  userType: "",
 };
 
 export const createUser = createAsyncThunk(
@@ -44,6 +45,9 @@ const authSlice = createSlice({
     },
     toggleLoading: (state) => {
       state.isLoading = false;
+    },
+    setUserType: (state, action) => {
+      state.userType = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -85,5 +89,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { logout, setUser, toggleLoading } = authSlice.actions;
+export const { logout, setUser, toggleLoading, setUserType } =
+  authSlice.actions;
 export default authSlice.reducer;
