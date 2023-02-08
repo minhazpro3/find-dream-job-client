@@ -14,13 +14,29 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setUserType } from "../../features/auth/authSlice";
+import { useRegisterMutation } from "../../features/auth/authApi";
 
 const ProfileForm = ({ setUserForm }) => {
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { userType } = useSelector((state) => state.auth);
-  const onSubmit = (data) => console.log(data);
+  const [postUser, { isLoading, isError }] = useRegisterMutation();
+
+  const { userType, email } = useSelector((state) => state.auth);
+  const onSubmit = (data) => {
+    const newData = {
+      userName: data.userName,
+      userEmail: email,
+      companyName: data.companyName,
+      companyCategory: data.companyCategory,
+      employees: data.employees,
+      gender: data.gender,
+      userRole: userType,
+      yourPosition: data.userPosition,
+    };
+
+    dispatch(postUser(newData));
+  };
 
   const handleBack = () => {
     dispatch(setUserType(""));
@@ -81,11 +97,11 @@ const ProfileForm = ({ setUserForm }) => {
                 sx={{ width: { md: 300, sm: 250, xs: 250 }, bgcolor: "#fff" }}
                 label="Email"
                 id="outlined-size-small"
+                disabled
                 variant="outlined"
                 size="small"
                 {...register("userEmail")}
                 type="email"
-                required
               />
               <label style={{ fontWeight: "600", opacity: "80%" }}>
                 Name of company
@@ -180,7 +196,7 @@ const ProfileForm = ({ setUserForm }) => {
                 id="outlined-size-small"
                 variant="outlined"
                 size="small"
-                {...register("yourRole")}
+                {...register("userPosition")}
                 type="text"
                 required
               />
