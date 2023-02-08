@@ -15,7 +15,7 @@ import { Button } from "@mui/material";
 
 import MenuIcon from "@mui/icons-material/Menu";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import auth from "../../firebase/firebase.config";
 import { logout } from "../../features/auth/authSlice";
@@ -26,7 +26,7 @@ const settings = ["Profile", "Account", "Dashboard", "Logout"];
 const Navigation = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
+  const location = useLocation();
   const { email } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
@@ -143,6 +143,24 @@ const Navigation = () => {
               </Button>
             ))}
           </Box>
+          {location.pathname === "/make-profile" ? (
+            ""
+          ) : (
+            <Box>
+              <Typography
+                sx={{
+                  mx: 1,
+                  px: 2,
+                  py: 1,
+                  bgcolor: "#f344",
+                  borderRadius: "20px",
+                }}
+              >
+                {" "}
+                <Link to="/make-profile">Get Start</Link>
+              </Typography>
+            </Box>
+          )}
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">

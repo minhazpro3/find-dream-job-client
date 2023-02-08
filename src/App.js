@@ -10,6 +10,7 @@ import auth from "./firebase/firebase.config";
 import { useDispatch } from "react-redux";
 import { setUser, toggleLoading } from "./features/auth/authSlice";
 import PrivateRoute from "./utils/PrivateRoute";
+import MakeProfile from "./pages/MakeProfile";
 
 function App() {
   const dispatch = useDispatch();
@@ -38,6 +39,14 @@ function App() {
             </PrivateRoute>
           }
         />
+        <Route
+          path="/make-profile"
+          element={
+            <PrivateRoute>
+              <MakeProfile />
+            </PrivateRoute>
+          }
+        ></Route>
       </Routes>
     </BrowserRouter>
   );
