@@ -27,7 +27,8 @@ const Navigation = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const location = useLocation();
-  const { email } = useSelector((state) => state.auth);
+  const { email, user } = useSelector((state) => state.auth);
+  console.log(user);
   const dispatch = useDispatch();
 
   const handleOpenNavMenu = (event) => {
@@ -143,8 +144,21 @@ const Navigation = () => {
               </Button>
             ))}
           </Box>
-          {location.pathname === "/make-profile" ? (
-            ""
+          {user?.email ? (
+            <Box>
+              <Typography
+                sx={{
+                  mx: 1,
+                  px: 2,
+                  py: 1,
+                  bgcolor: "#f344",
+                  borderRadius: "20px",
+                }}
+              >
+                {" "}
+                <Link to="/make-profile">Update Profile</Link>
+              </Typography>
+            </Box>
           ) : (
             <Box>
               <Typography

@@ -7,6 +7,8 @@ const PrivateRoute = ({ children }) => {
   const { email, isLoading } = useSelector((state) => state.auth);
   const { pathname } = useLocation();
 
+  console.log(isLoading);
+
   if (isLoading) {
     return (
       <Box sx={{ display: "flex", justifyContent: "center", my: 4 }}>

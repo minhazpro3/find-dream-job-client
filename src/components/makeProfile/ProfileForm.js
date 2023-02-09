@@ -26,7 +26,7 @@ const ProfileForm = ({ setUserForm }) => {
   const onSubmit = (data) => {
     const newData = {
       userName: data.userName,
-      userEmail: email,
+      email: email,
       companyName: data.companyName,
       companyCategory: data.companyCategory,
       employees: data.employees,

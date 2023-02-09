@@ -12,7 +12,6 @@ const ChooseType = () => {
   const dispatch = useDispatch();
   const [userForm, setUserForm] = useState("");
   const { userType } = useSelector((state) => state.auth);
-  console.log(userType);
 
   return (
     <Container>
