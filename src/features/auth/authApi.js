@@ -1,5 +1,12 @@
 import apiSlice from "./../api/apiSlice";
-import { getUser, setUser, setUserLocal, toggleLoading } from "./authSlice";
+import {
+  getUser,
+  setRouteChange,
+  setUser,
+  setUserLocal,
+  toggleLoading,
+} from "./authSlice";
+
 const authApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     register: builder.mutation({
@@ -14,6 +21,7 @@ const authApi = apiSlice.injectEndpoints({
 
           if (res.data.status) {
             dispatch(setUserLocal(data));
+            dispatch(setRouteChange());
           }
         } catch (error) {}
       },

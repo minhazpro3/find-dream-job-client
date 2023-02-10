@@ -198,6 +198,11 @@ const Navigation = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
+              <MenuItem>
+                <Typography textAlign="center">
+                  <Link to="/dashboard">Dashboard</Link>
+                </Typography>
+              </MenuItem>
               <MenuItem onClick={handleCloseUserMenu}>
                 {email ? (
                   <Typography onClick={handleSignout} textAlign="center">
