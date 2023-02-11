@@ -137,7 +137,9 @@ const Dashboard = (props) => {
         }}
       >
         <Toolbar />
-        <Outlet />
+        <Box>
+          <Outlet />
+        </Box>
       </Box>
     </Box>
   );
