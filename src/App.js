@@ -19,6 +19,8 @@ import PrivateRoute from "./utils/PrivateRoute";
 import MakeProfile from "./pages/MakeProfile";
 import Dashboard from "./pages/Dashboard";
 import AddPosition from "./pages/AddPosition";
+import Jobs from "./pages/Jobs";
+import JobDetails from "./pages/JobDetails";
 
 function App() {
   const dispatch = useDispatch();
@@ -65,6 +67,22 @@ function App() {
           element={
             <PrivateRoute>
               <MakeProfile />
+            </PrivateRoute>
+          }
+        ></Route>
+        <Route
+          path="/job-details/:id"
+          element={
+            <PrivateRoute>
+              <JobDetails />
+            </PrivateRoute>
+          }
+        ></Route>
+        <Route
+          path="/find-jobs"
+          element={
+            <PrivateRoute>
+              <Jobs />
             </PrivateRoute>
           }
         ></Route>

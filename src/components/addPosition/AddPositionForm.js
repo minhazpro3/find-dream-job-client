@@ -14,19 +14,22 @@ import {
 import { useForm } from "react-hook-form";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Translate } from "@mui/icons-material";
+import { useJobPostMutation } from "../../features/job/jobApi";
 
 const AddPositionForm = () => {
   const { register, handleSubmit, reset } = useForm();
-  const [inputFields, setInputFields] = useState([{ skill: "" }]);
+  const [inputFields, setInputFields] = useState([]);
+  const [postJob, { isLoading, isError }] = useJobPostMutation();
+  console.log(inputFields);
 
   const addFields = () => {
-    let newfield = { skill: "" };
+    let newfield = [];
 
     setInputFields([...inputFields, newfield]);
   };
   const handleFormChange = (index, event) => {
     let data = [...inputFields];
-    data[index].skill = event.target.value;
+    data[index] = event.target.value;
     setInputFields(data);
   };
   const removeFields = (index) => {
@@ -35,26 +38,34 @@ const AddPositionForm = () => {
     setInputFields(data);
   };
   const onSubmit = (data) => {
-    console.log(data);
-    console.log(inputFields);
+    const newData = {
+      companyName: data.companyName,
+      employType: data.employType,
+      experience: data.experience,
+      overview: data.introduce,
+      location: data.location,
+      position: data.position,
+      salaryRange: data.salaryRange,
+      workLevel: data.workLevel,
+      skills: inputFields,
+    };
+    postJob(newData);
   };
   return (
     <Box sx={{ mx: "auto", width: "100%" }}>
-      <Box sx={{ display: "flex", justifyContent: "center" }}>
+      <Box>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Typography sx={{ my: 3, fontWeight: "medium" }} variant="h5">
             Register as a
           </Typography>
 
-          <Box>
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
             <Box>
               <Box
                 sx={{
-                  display: { md: "flex", sm: "flex", xs: "inline-grid" },
+                  display: { sm: "flex" },
                   justifyContent: "center",
-
                   gap: 2,
-                  mb: 1,
                 }}
               >
                 <Box sx={{ display: "inline-grid", gap: 1 }}>

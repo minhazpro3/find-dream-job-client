@@ -28,7 +28,7 @@ const Navigation = () => {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const location = useLocation();
   const { email, user } = useSelector((state) => state.auth);
-  console.log(user);
+
   const dispatch = useDispatch();
 
   const handleOpenNavMenu = (event) => {
