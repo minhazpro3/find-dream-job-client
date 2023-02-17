@@ -9,7 +9,7 @@ const JobDetails = () => {
   const { id } = useParams();
   console.log(id);
   const { data, isLoading, isError } = useGetJobByIdQuery(id);
-  const { position, companyName } = data.data || {};
+  const { position, companyName } = data?.data || {};
   return (
     <Box>
       <Navigation />
