@@ -49,7 +49,7 @@ const AddPositionForm = () => {
       workLevel: data.workLevel,
       skills: inputFields,
     };
-    postJob(newData);
+    postJob({ ...newData, applicants: [], queries: [] });
   };
   return (
     <Box sx={{ mx: "auto", width: "100%" }}>

@@ -12,6 +12,7 @@ const ChooseType = () => {
   const dispatch = useDispatch();
   const [userForm, setUserForm] = useState("");
   const { userType } = useSelector((state) => state.auth);
+  console.log(userType);
 
   return (
     <Container>
@@ -41,7 +42,8 @@ const ChooseType = () => {
                   boxShadow: "0px 0px 10px 6px #e0e0e0",
                   width: { md: 400, sm: 300, xs: 250 },
                   height: { md: 420, sm: 320, xs: 280 },
-
+                  border: userType === "candidate" && 2,
+                  borderColor: userType === "candidate" && "#008000",
                   py: 4,
                   px: { xs: 3, sm: 4 },
                   "&:hover": {
@@ -75,6 +77,8 @@ const ChooseType = () => {
                   boxShadow: "0px 0px 10px 6px #e0e0e0",
                   width: { md: 400, sm: 300, xs: 250 },
                   height: { md: 420, sm: 320, xs: 280 },
+                  border: userType === "employee" && 2,
+                  borderColor: userType === "employee" && "#008000",
                   py: 4,
                   px: { xs: 3, sm: 4 },
                   mt: { xs: 2, sm: 0 },

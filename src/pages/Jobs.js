@@ -29,7 +29,7 @@ const Jobs = () => {
         <Grid container spacing={{ xs: 2, sm: 6 }}>
           {data?.data.map((position, index) => (
             <Grid item xs={12} sm={6} md={6} key={index}>
-              <Box sx={{ bgcolor: "#e3f2fd", p: 2 }}>
+              <Box sx={{ bgcolor: "#e3f2fd", p: 2, borderRadius: "10px" }}>
                 <Box
                   sx={{
                     display: "flex",

@@ -1,15 +1,45 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import React from "react";
-import { useParams } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import { useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import Navigation from "../components/share/Navigation";
-import { useGetJobByIdQuery } from "../features/job/jobApi";
+import {
+  useGetJobByIdQuery,
+  useJobApplyMutation,
+} from "../features/job/jobApi";
 
 const JobDetails = () => {
   const { id } = useParams();
-  console.log(id);
+
+  const { user } = useSelector((state) => state.auth);
+  console.log(user);
   const { data, isLoading, isError } = useGetJobByIdQuery(id);
-  const { position, companyName } = data?.data || {};
+  const { position, companyName, _id } = data?.data || {};
+  const navigate = useNavigate();
+  const [applyJob] = useJobApplyMutation();
+  const handleApply = () => {
+    console.log("apply click");
+    if (user?.userRole === "employee") {
+      toast.error("Onl candidate can be apply");
+      return;
+    }
+
+    if (user?.userRole === "") {
+      navigate("/login");
+      return;
+    }
+
+    const data = {
+      userId: user._id,
+      email: user.email,
+      jobId: _id,
+    };
+
+    applyJob(data);
+  };
+
   return (
     <Box>
       <Navigation />
@@ -17,6 +47,7 @@ const JobDetails = () => {
         <Typography>Single Jobs</Typography>
         <Typography>{position}</Typography>
         <Typography>{companyName}</Typography>
+        <Button onClick={handleApply}>Apply</Button>
       </Container>
     </Box>
   );
