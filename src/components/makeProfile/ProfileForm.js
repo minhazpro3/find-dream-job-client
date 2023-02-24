@@ -17,6 +17,8 @@ import { setUserType } from "../../features/auth/authSlice";
 import { useRegisterMutation } from "../../features/auth/authApi";
 import { MuiTelInput, matchIsValidTel } from "mui-tel-input";
 import Autocomplete from "@mui/material/Autocomplete";
+import axios from "axios";
+import { toast } from "react-hot-toast";
 const countries = [
   { code: "AD", label: "Andorra", phone: "376" },
   {
@@ -443,27 +445,65 @@ const countries = [
 ];
 
 const ProfileForm = ({ setUserForm }) => {
-  const [phone, setPhone] = useState("US");
+  const [phone, setPhone] = useState("");
+  console.log(phone);
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [postUser, { isLoading, isError }] = useRegisterMutation();
-  const [file, setFile] = useState({});
-
+  const [url, setUrl] = useState("");
   const { userType, email } = useSelector((state) => state.auth);
-  const onSubmit = (data) => {
-    const newData = {
-      userName: data.userName,
-      email: email,
-      companyName: data.companyName,
-      companyCategory: data.companyCategory,
-      employees: data.employees,
-      gender: data.gender,
-      userRole: userType,
-      yourPosition: data.userPosition,
-    };
 
-    dispatch(postUser(newData));
+  const [file, setFile] = useState(null);
+
+  console.log(file);
+
+  const handleUploadResume = (e) => {
+    const formData = new FormData();
+    formData.set("key", "d45a4ad9a09ad1464075aa3c82125b64");
+    formData.append("image", e.target.files[0]);
+    setFile(e.target.files[0]);
+
+    axios
+      .post("https://api.imgbb.com/1/upload", formData)
+      .then((res) => {
+        if (res.data.data.url) {
+          toast.success("Yaap! Resume Uploaded success");
+          setUrl(res.data.data.url);
+        }
+      })
+      .catch((error) => {});
+  };
+
+  const onSubmit = (data) => {
+    if (data?.companyName) {
+      const newData = {
+        userName: data.userName,
+        email: email,
+        companyCategory: data.companyCategory,
+        companyName: data.companyName,
+        employees: data.employees,
+        gender: data.gender,
+        userPosition: data.userPosition,
+      };
+      console.log(newData);
+      // dispatch(postUser(newData));
+    } else {
+      const newData = {
+        userName: data.userName,
+        email: email,
+        phone: phone,
+        address: data.address,
+        city: data.city,
+        country: data.country,
+        resume: url,
+        website: data.website,
+        gender: data.gender,
+        linkedin: data.linkedinUrl,
+      };
+      console.log(newData);
+      // dispatch(postUser(newData));
+    }
   };
 
   const handleBack = () => {
@@ -474,11 +514,7 @@ const ProfileForm = ({ setUserForm }) => {
   const handleChange = (newPhone) => {
     setPhone(newPhone);
   };
-  const handleUploadResume = (e) => {
-    if (e.target.files) {
-      setFile(e.target.files[0]);
-    }
-  };
+
   return (
     <Box>
       <Box
@@ -557,6 +593,7 @@ const ProfileForm = ({ setUserForm }) => {
                     variant="outlined"
                     value={phone}
                     onChange={handleChange}
+                    required
                     sx={{
                       width: { md: 300, sm: 250, xs: 250 },
                       bgcolor: "#fff",
@@ -575,6 +612,7 @@ const ProfileForm = ({ setUserForm }) => {
                     label="Address"
                     id="outlined-size-small"
                     variant="outlined"
+                    required
                     size="small"
                     {...register("address")}
                     type="text"
@@ -630,6 +668,8 @@ const ProfileForm = ({ setUserForm }) => {
                         {...params}
                         label="Choose a country"
                         size="small"
+                        required
+                        {...register("country")}
                         inputProps={{
                           ...params.inputProps,
                           autoComplete: "new-password", // disable autocomplete and autofill
@@ -645,16 +685,18 @@ const ProfileForm = ({ setUserForm }) => {
                   <label style={{ fontWeight: "600", opacity: "80%" }}>
                     Resume /: {file?.name ? file.name : "no chosen file"}
                   </label>
+
                   <Button variant="contained" component="label">
-                    Upload
+                    Choose file
                     <input
                       hidden
                       name="file"
-                      onChange={(e) => handleUploadResume(e)}
+                      onChange={handleUploadResume}
                       accept="application/pdf"
                       type="file"
                     />
                   </Button>
+
                   <label style={{ fontWeight: "600", opacity: "80%" }}>
                     Website/portfolio
                   </label>
