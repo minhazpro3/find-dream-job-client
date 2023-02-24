@@ -4,6 +4,7 @@ import React from "react";
 import { toast } from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import SingleJobs from "../components/jobdetails/SingleJobs";
 import Navigation from "../components/share/Navigation";
 import {
   useGetJobByIdQuery,
@@ -14,15 +15,15 @@ const JobDetails = () => {
   const { id } = useParams();
 
   const { user } = useSelector((state) => state.auth);
+
   console.log(user);
   const { data, isLoading, isError } = useGetJobByIdQuery(id);
   const { position, companyName, _id } = data?.data || {};
   const navigate = useNavigate();
   const [applyJob] = useJobApplyMutation();
   const handleApply = () => {
-    console.log("apply click");
     if (user?.userRole === "employee") {
-      toast.error("Onl candidate can be apply");
+      toast.error("Only candidate can be apply");
       return;
     }
 
@@ -44,10 +45,11 @@ const JobDetails = () => {
     <Box>
       <Navigation />
       <Container>
-        <Typography>Single Jobs</Typography>
+        {/* <Typography>Single Jobs</Typography>
         <Typography>{position}</Typography>
         <Typography>{companyName}</Typography>
-        <Button onClick={handleApply}>Apply</Button>
+        <Button onClick={handleApply}>Apply</Button> */}
+        <SingleJobs />
       </Container>
     </Box>
   );

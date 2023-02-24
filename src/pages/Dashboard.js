@@ -19,12 +19,15 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import { Link, Outlet } from "react-router-dom";
+import userEvent from "@testing-library/user-event";
+import { useSelector } from "react-redux";
 
 const drawerWidth = 240;
 
 const Dashboard = (props) => {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const { user } = useSelector((state) => state.auth);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -37,16 +40,40 @@ const Dashboard = (props) => {
       <List>
         <ListItem disablePadding>
           <ListItemButton>
-            <ListItemIcon>
-              <AddBoxIcon />
-            </ListItemIcon>
-            <ListItemText>
-              {" "}
-              <Link to="add-position"> add new position </Link>{" "}
-            </ListItemText>
+            <Typography variant="h5"> Hey {user?.userName}</Typography>
           </ListItemButton>
         </ListItem>
       </List>
+      {user?.userType === "employee" ? (
+        <List>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <AddBoxIcon />
+              </ListItemIcon>
+              <ListItemText>
+                {" "}
+                <Link to="add-position"> add new position </Link>
+              </ListItemText>
+            </ListItemButton>
+          </ListItem>
+        </List>
+      ) : (
+        <List>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <AddBoxIcon />
+              </ListItemIcon>
+              <ListItemText>
+                {" "}
+                <Link to="/find-jobs"> Find jobs </Link>
+              </ListItemText>
+            </ListItemButton>
+          </ListItem>
+        </List>
+      )}
+
       {/* <Divider /> */}
       {/* <List>
         {["All mail", "Trash", "Spam"].map((text, index) => (
@@ -85,8 +112,8 @@ const Dashboard = (props) => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Responsive drawer
+          <Typography variant="h6">
+            Welcome to Dream jobs as a {user?.userType}
           </Typography>
         </Toolbar>
       </AppBar>

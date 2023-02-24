@@ -21,10 +21,12 @@ import Dashboard from "./pages/Dashboard";
 import AddPosition from "./pages/AddPosition";
 import Jobs from "./pages/Jobs";
 import JobDetails from "./pages/JobDetails";
+import Profile from "./components/dashboard/Profile";
 
 function App() {
   const dispatch = useDispatch();
-
+  const { user } = useSelector((state) => state.auth);
+  console.log(user);
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -60,6 +62,7 @@ function App() {
           }
         >
           <Route path="add-position" element={<AddPosition />} />
+          <Route path="/dashboard" element={<Profile />} />
         </Route>
 
         <Route

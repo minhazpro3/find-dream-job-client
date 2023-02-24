@@ -484,10 +484,11 @@ const ProfileForm = ({ setUserForm }) => {
         companyName: data.companyName,
         employees: data.employees,
         gender: data.gender,
+        userType: userType,
         userPosition: data.userPosition,
       };
-      console.log(newData);
-      // dispatch(postUser(newData));
+      // console.log(newData);
+      dispatch(postUser(newData));
     } else {
       const newData = {
         userName: data.userName,
@@ -499,10 +500,11 @@ const ProfileForm = ({ setUserForm }) => {
         resume: url,
         website: data.website,
         gender: data.gender,
+        userType: userType,
         linkedin: data.linkedinUrl,
       };
-      console.log(newData);
-      // dispatch(postUser(newData));
+      // console.log(newData);
+      dispatch(postUser(newData));
     }
   };
 

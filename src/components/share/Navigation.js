@@ -203,6 +203,11 @@ const Navigation = () => {
                   <Link to="/dashboard">Dashboard</Link>
                 </Typography>
               </MenuItem>
+              <MenuItem>
+                <Typography textAlign="center">
+                  <Link to="/dashboard">Dashboard</Link>
+                </Typography>
+              </MenuItem>
               <MenuItem onClick={handleCloseUserMenu}>
                 {email ? (
                   <Typography onClick={handleSignout} textAlign="center">
