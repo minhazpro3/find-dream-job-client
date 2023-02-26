@@ -20,7 +20,24 @@ import { signOut } from "firebase/auth";
 import auth from "../../firebase/firebase.config";
 import { logout } from "../../features/auth/authSlice";
 
-const pages = ["Products", "Pricing", "Blog"];
+const pages = [
+  {
+    id: 1,
+    Page: "Home",
+    route: "/",
+  },
+  {
+    id: 2,
+    Page: "Jobs",
+    route: "/find-jobs",
+  },
+
+  {
+    id: 3,
+    Page: "Services",
+    route: "/",
+  },
+];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const Navigation = () => {
@@ -75,7 +92,7 @@ const Navigation = () => {
               textDecoration: "none",
             }}
           >
-            TODO
+            Will Jobs
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -107,11 +124,15 @@ const Navigation = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem>
+                <Typography textAlign="center">Home</Typography>
+              </MenuItem>
+              <MenuItem>
+                <Typography textAlign="center">Jobs</Typography>
+              </MenuItem>
+              <MenuItem>
+                <Typography textAlign="center">Services</Typography>
+              </MenuItem>
             </Menu>
           </Box>
 
@@ -119,7 +140,7 @@ const Navigation = () => {
             variant="h5"
             noWrap
             component="a"
-            href=""
+            href="/"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -131,21 +152,30 @@ const Navigation = () => {
               textDecoration: "none",
             }}
           >
-            TODO
+            Will Jobs
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+              gap: 1,
+              mx: 1,
+            }}
+          >
             {pages.map((page) => (
               <Button
-                key={page}
+                key={page.id}
                 onClick={handleCloseNavMenu}
+                href={page.route}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                {page}
+                {page?.Page}
               </Button>
             ))}
           </Box>
           {user?.email ? (
-            <Box>
+            <Box sx={{ mx: 1 }}>
               <Typography
                 sx={{
                   mx: 1,
@@ -156,11 +186,13 @@ const Navigation = () => {
                 }}
               >
                 {" "}
-                <Link to="/make-profile">Update Profile</Link>
+                <Link style={{ textDecoration: "none" }} to="/make-profile">
+                  Update Profile
+                </Link>
               </Typography>
             </Box>
           ) : (
-            <Box>
+            <Box sx={{ mx: 1 }}>
               <Typography
                 sx={{
                   mx: 1,
@@ -171,7 +203,9 @@ const Navigation = () => {
                 }}
               >
                 {" "}
-                <Link to="/make-profile">Get Start</Link>
+                <Link style={{ textDecoration: "none" }} to="/make-profile">
+                  Get Start
+                </Link>
               </Typography>
             </Box>
           )}
@@ -203,11 +237,7 @@ const Navigation = () => {
                   <Link to="/dashboard">Dashboard</Link>
                 </Typography>
               </MenuItem>
-              <MenuItem>
-                <Typography textAlign="center">
-                  <Link to="/dashboard">Dashboard</Link>
-                </Typography>
-              </MenuItem>
+
               <MenuItem onClick={handleCloseUserMenu}>
                 {email ? (
                   <Typography onClick={handleSignout} textAlign="center">
