@@ -41,7 +41,6 @@ function App() {
 
   return (
     <BrowserRouter>
-      {/* <Navigation /> */}
       <Routes>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
