@@ -1,106 +1,86 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 
+import { makeStyles } from "@material-ui/core/styles";
+import { Container, Typography, Grid, Paper, Button } from "@material-ui/core";
+const useStyles = makeStyles((theme) => ({
+  container: {
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(4),
+  },
+  paper: {
+    padding: theme.spacing(2),
+    display: "flex",
+    flexDirection: "column",
+  },
+  button: {
+    marginTop: theme.spacing(2),
+  },
+  jobInfo: {
+    [theme.breakpoints.up("sm")]: {
+      paddingRight: theme.spacing(4),
+      borderRight: `1px solid ${theme.palette.divider}`,
+    },
+  },
+}));
 const SingleJobs = () => {
+  const classes = useStyles();
   return (
-    <Box sx={{ display: { md: "flex", justifyContent: "space-between" } }}>
-      <Box>
-        <Typography sx={{ mt: 2 }}>
-          We see a future where all banks will need to support digital assets
-          and provide a responsive, online interface to tech-savvy customers.
-          Custodia is already a chartered bank and is building digital asset
-          products alongside its US dollar payment offering, including custody
-          and settlement services. The Custodia team is comprised of all-stars
-          with deep experience in both bitcoin and traditional financial
-          services. Salary Range up to $130,000 DOE
+    <Box>
+      <Container maxWidth="lg" className={classes.container}>
+        <Typography variant="h3" gutterBottom>
+          Job Profile
         </Typography>
-        <Typography sx={{ mt: 2 }}>
-          About Your Role:
-          <br />
-          We are looking for a well-rounded engineer who will thrive in a
-          fast-paced environment and embrace continuous learning and challenges.
-          The ideal candidate will have a strong attention to detail and be
-          ready to jump in on Day One. <br /> Design and implement software for
-          the React/Typescript frontend Assist and implement software for the
-          Python/Go backend Write reusable, testable, idiomatic, principled code
-          Read and write technical documentation Quick and efficient debugging
-          capabilities Assume technical responsibility of various complex
-          systems Perform regular code review Provide mentorship for team
-          members Autonomously break down ambiguous work and plot a course of
-          action An advocate for more efficient, quick, and high quality code
-          delivery Ability to grow less-experienced peers into formidable
-          colleagues through pairing, code reviews, and empathetic coaching.
-        </Typography>
-        <Typography sx={{ mt: 2 }}>
-          You will work on
-          <br />
-          We are looking for a well-rounded engineer who will thrive in a
-          fast-paced environment and embrace continuous learning and challenges.
-          The ideal candidate will have a strong attention to detail and be
-          ready to jump in on Day One. <br /> Design and implement software for
-          the React/Typescript frontend Assist and implement software for the
-          Python/Go backend Write reusable, testable, idiomatic, principled code
-          Read and write technical documentation Quick and efficient debugging
-          capabilities Assume technical responsibility of various complex
-          systems Perform regular code review Provide mentorship for team
-          members Autonomously break down ambiguous work and plot a course of
-          action An advocate for more efficient, quick, and high quality code
-          delivery Ability to grow less-experienced peers into formidable
-          colleagues through pairing, code reviews, and empathetic coaching.
-        </Typography>
-        <Typography sx={{ mt: 2 }}>
-          We’re looking for someone with
-          <br />
-          We are looking for a well-rounded engineer who will thrive in a
-          fast-paced environment and embrace continuous learning and challenges.
-          The ideal candidate will have a strong attention to detail and be
-          ready to jump in on Day One. <br /> Design and implement software for
-          the React/Typescript frontend Assist and implement software for the
-          Python/Go backend Write reusable, testable, idiomatic, principled code
-          Read and write technical documentation Quick and efficient debugging
-          capabilities Assume technical responsibility of various complex
-          systems Perform regular code review Provide mentorship for team
-          members Autonomously break down ambiguous work and plot a course of
-          action An advocate for more efficient, quick, and high quality code
-          delivery Ability to grow less-experienced peers into formidable
-          colleagues through pairing, code reviews, and empathetic coaching.
-        </Typography>
-        <Typography sx={{ mt: 2 }}>
-          Bonus if you have experience with
-          <br />
-          We are looking for a well-rounded engineer who will thrive in a
-          fast-paced environment and embrace continuous learning and challenges.
-          The ideal candidate will have a strong attention to detail and be
-          ready to jump in on Day One. <br /> Design and implement software for
-          the React/Typescript frontend Assist and implement software for the
-          Python/Go backend Write reusable, testable, idiomatic, principled code
-          Read and write technical documentation Quick and efficient debugging
-          capabilities Assume technical responsibility of various complex
-          systems Perform regular code review Provide mentorship for team
-          members Autonomously break down ambiguous work and plot a course of
-          action An advocate for more efficient, quick, and high quality code
-          delivery Ability to grow less-experienced peers into formidable
-          colleagues through pairing, code reviews, and empathetic coaching.
-        </Typography>
-        <Typography sx={{ mt: 2 }}>
-          Our engineering team includes
-          <br />
-          We are looking for a well-rounded engineer who will thrive in a
-          fast-paced environment and embrace continuous learning and challenges.
-          The ideal candidate will have a strong attention to detail and be
-          ready to jump in on Day One. <br /> Design and implement software for
-          the React/Typescript frontend Assist and implement software for the
-          Python/Go backend Write reusable, testable, idiomatic, principled code
-          Read and write technical documentation Quick and efficient debugging
-          capabilities Assume technical responsibility of various complex
-          systems Perform regular code review Provide mentorship for team
-          members Autonomously break down ambiguous work and plot a course of
-          action An advocate for more efficient, quick, and high quality code
-          delivery Ability to grow less-experienced peers into formidable
-          colleagues through pairing, code reviews, and empathetic coaching.
-        </Typography>
-      </Box>
-      <Box>Hello </Box>
+        <Grid container spacing={4}>
+          <Grid item xs={12} sm={4}>
+            <Paper className={classes.paper + " " + classes.jobInfo}>
+              <Typography variant="h5" gutterBottom>
+                Job Title
+              </Typography>
+              <Typography variant="subtitle1" gutterBottom>
+                Senior Software Engineer
+              </Typography>
+              <Typography variant="h5" gutterBottom>
+                Job Type
+              </Typography>
+              <Typography variant="subtitle1" gutterBottom>
+                Full-time
+              </Typography>
+              <Typography variant="h5" gutterBottom>
+                Location
+              </Typography>
+              <Typography variant="subtitle1" gutterBottom>
+                San Francisco, CA
+              </Typography>
+            </Paper>
+          </Grid>
+          <Grid item xs={12} sm={8}>
+            <Paper className={classes.paper}>
+              <Typography variant="h5" gutterBottom>
+                Job Description
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Praesent in sapien eu nisi convallis gravida ac sed erat. Nullam
+                eget sapien sodales, fringilla tortor at, posuere magna. Donec
+                hendrerit, velit non mattis viverra, ligula ipsum ultrices
+                massa, a feugiat sapien eros vel nunc. Suspendisse et mauris
+                eget ex cursus malesuada a eu enim. Maecenas blandit ornare elit
+                auctor dignissim. Integer ullamcorper diam quis ligula mattis,
+                non bibendum lorem aliquet. Proin gravida quam vitae nunc
+                suscipit interdum.
+              </Typography>
+              <Button
+                variant="contained"
+                color="primary"
+                className={classes.button}
+              >
+                Apply Now
+              </Button>
+            </Paper>
+          </Grid>
+        </Grid>
+      </Container>
     </Box>
   );
 };
