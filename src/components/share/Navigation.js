@@ -78,7 +78,7 @@ const Navigation = () => {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
-            variant="h6"
+            variant="h4"
             noWrap
             component="a"
             href="/"
@@ -121,7 +121,7 @@ const Navigation = () => {
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: "block", md: "none" },
+                display: { xs: "flow", md: "none" },
               }}
             >
               <MenuItem>
@@ -164,19 +164,25 @@ const Navigation = () => {
             }}
           >
             {pages.map((page) => (
-              <Button
+              <Typography
                 key={page.id}
                 onClick={handleCloseNavMenu}
-                href={page.route}
-                sx={{ my: 2, color: "white", display: "block" }}
+                variant="subtitle1"
+                sx={{ cursor: "pointer" }}
               >
-                {page?.Page}
-              </Button>
+                <Link
+                  style={{ textDecoration: "none", color: "white" }}
+                  to={page.route}
+                >
+                  {" "}
+                  {page?.Page}
+                </Link>
+              </Typography>
             ))}
           </Box>
           {user?.email ? (
             <Box sx={{ mx: 1 }}>
-              <Typography
+              {/* <Typography
                 sx={{
                   mx: 1,
                   px: 2,
@@ -189,7 +195,7 @@ const Navigation = () => {
                 <Link style={{ textDecoration: "none" }} to="/make-profile">
                   Update Profile
                 </Link>
-              </Typography>
+              </Typography> */}
             </Box>
           ) : (
             <Box sx={{ mx: 1 }}>
@@ -217,7 +223,7 @@ const Navigation = () => {
               </IconButton>
             </Tooltip>
             <Menu
-              sx={{ mt: "45px" }}
+              sx={{ mt: "45px", px: 12 }}
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
@@ -234,10 +240,12 @@ const Navigation = () => {
             >
               <MenuItem>
                 <Typography textAlign="center">
-                  <Link to="/dashboard">Dashboard</Link>
+                  <Link style={{ textDecoration: "none" }} to="/dashboard">
+                    Dashboard
+                  </Link>
                 </Typography>
               </MenuItem>
-
+              <br />
               <MenuItem onClick={handleCloseUserMenu}>
                 {email ? (
                   <Typography onClick={handleSignout} textAlign="center">

@@ -2,93 +2,41 @@ import React from "react";
 import login from "../utils/images/login.png";
 import Navigation from "./../components/share/Navigation";
 import { makeStyles } from "@material-ui/core/styles";
-import { Grid, Typography, Button } from "@material-ui/core";
+import {
+  Grid,
+  Typography,
+  Button,
+  Card,
+  Toolbar,
+  IconButton,
+} from "@material-ui/core";
 import { Box } from "@mui/system";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import SearchIcon from "@mui/icons-material/Search";
+import {
+  AppBar,
+  CardActions,
+  CardContent,
+  Container,
+  TextField,
+} from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-
-    [theme.breakpoints.down("sm")]: {
-      padding: theme.spacing(0),
-    },
   },
-  banner: {
-    height: "calc(100vh - 64px)", // Subtract the height of the app bar
-    background: "linear-gradient(to bottom right, #2B2E4A, #1C1F2E)",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    [theme.breakpoints.down("sm")]: {
-      height: "calc(100vh - 56px)", // Subtract the height of the mobile app bar
-    },
-  },
-  bannerContent: {
-    textAlign: "center",
-    color: "white",
+  menuButton: {
+    marginRight: theme.spacing(2),
   },
   title: {
-    fontWeight: "bold",
-    marginBottom: theme.spacing(2),
-    fontSize: "4rem",
-    textShadow: "0px 0px 5px rgba(0,0,0,0.5)",
-    [theme.breakpoints.down("sm")]: {
-      fontSize: "3rem",
-    },
-  },
-  subtitle: {
-    marginBottom: theme.spacing(2),
-    fontSize: "1.5rem",
-    textShadow: "0px 0px 5px rgba(0,0,0,0.5)",
-    [theme.breakpoints.down("sm")]: {
-      fontSize: "1.25rem",
-    },
-  },
-  button: {
-    marginTop: theme.spacing(3),
-    borderRadius: "30px",
-    textTransform: "none",
-    backgroundColor: "#FF7BAC",
-    color: "white",
-    boxShadow: "0px 0px 10px rgba(255,123,172,0.5)",
-    "&:hover": {
-      backgroundColor: "#FF4D9D",
-    },
+    flexGrow: 1,
   },
   searchBox: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: theme.spacing(5),
-    padding: theme.spacing(2),
-    borderRadius: "50px",
-    backgroundColor: "white",
-    boxShadow: "0px 0px 10px rgba(0,0,0,0.1)",
-    [theme.breakpoints.down("sm")]: {
-      marginTop: theme.spacing(3),
-      padding: theme.spacing(1),
-    },
+    marginTop: theme.spacing(4),
+    marginBottom: theme.spacing(4),
   },
-  searchIcon: {
-    marginRight: theme.spacing(2),
-    width: "24px",
-    height: "24px",
-    color: "#707070",
-  },
-  searchText: {
-    flexGrow: 1,
-    border: "none",
-    outline: "none",
-    fontSize: "1.25rem",
-    fontWeight: "bold",
-  },
-  arrowIcon: {
-    marginLeft: theme.spacing(2),
-    width: "32px",
-    height: "32px",
-    color: "white",
+  card: {
+    marginBottom: theme.spacing(4),
   },
 }));
 
@@ -97,33 +45,97 @@ const Home = () => {
   return (
     <div>
       <Navigation />
-      <Box>
+      <Box sx={{ my: 5 }}>
         <div className={classes.root}>
-          <Grid container>
-            <Grid item xs={12} className={classes.banner}>
-              <div className={classes.bannerContent}>
-                <Typography variant="h1" className={classes.title}>
-                  Find Your Dream Job
+          <Container maxWidth="lg">
+            <Grid container spacing={4}>
+              <Grid item xs={12} sm={6}>
+                <Typography variant="h4" gutterBottom>
+                  Find Your Next Job
                 </Typography>
-                <Typography variant="h2" className={classes.subtitle}>
-                  Search Thousands of Jobs Worldwide
+                <Typography variant="body1" gutterBottom>
+                  Search thousands of job listings from companies all around the
+                  world.
                 </Typography>
-                <Button variant="contained" className={classes.button}>
-                  Start Your Job Search
-                </Button>
-                <div className={classes.searchBox}>
-                  <SearchIcon className={classes.searchIcon} />
-
-                  <input
-                    type="text"
-                    placeholder="Enter a Job Title or Company Name"
-                    className={classes.searchText}
-                  />
-                  <ArrowBackIcon className={classes.arrowIcon} />
-                </div>
-              </div>
+                <TextField
+                  className={classes.searchBox}
+                  label="Search Jobs"
+                  fullWidth
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <img
+                  src="http://i0.wp.com/jcf.org.bd/jcfwebport/wp-content/uploads/2019/01/jobs.jpg"
+                  alt="job search"
+                  width="100%"
+                />
+              </Grid>
             </Grid>
-          </Grid>
+            <Typography variant="h5" gutterBottom>
+              Featured Jobs
+            </Typography>
+            <Grid container spacing={4}>
+              <Grid item xs={12} sm={6} md={4}>
+                <Card className={classes.card}>
+                  <CardContent>
+                    <Typography variant="h6" component="h2">
+                      Frontend Developer
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="textSecondary"
+                      component="p"
+                    >
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Integer posuere erat a ante.
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button size="small">Learn More</Button>
+                  </CardActions>
+                </Card>
+              </Grid>
+              <Grid item xs={12} sm={6} md={4}>
+                <Card className={classes.card}>
+                  <CardContent>
+                    <Typography variant="h6" component="h2">
+                      Backend Developer
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="textSecondary"
+                      component="p"
+                    >
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Integer posuere erat a ante.
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button size="small">Learn More</Button>
+                  </CardActions>
+                </Card>
+              </Grid>
+              <Grid item xs={12} sm={6} md={4}>
+                <Card className={classes.card}>
+                  <CardContent>
+                    <Typography variant="h6" component="h2">
+                      Data Analyst
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="textSecondary"
+                      component="p"
+                    >
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button size="small">Learn More</Button>
+                  </CardActions>
+                </Card>
+              </Grid>
+            </Grid>
+          </Container>
         </div>
       </Box>
     </div>
