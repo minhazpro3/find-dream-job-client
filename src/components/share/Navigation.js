@@ -125,15 +125,26 @@ const Navigation = () => {
                 display: { xs: "flow", md: "none" },
               }}
             >
-              <MenuItem>
-                <Typography textAlign="center">Home</Typography>
-              </MenuItem>
-              <MenuItem>
-                <Typography textAlign="center">Jobs</Typography>
-              </MenuItem>
-              <MenuItem>
-                <Typography textAlign="center">Services</Typography>
-              </MenuItem>
+              <Grid container direction="column">
+                <MenuItem>
+                  <Link to="/">
+                    {" "}
+                    <Typography sx={{ px: 2 }}>Home</Typography>
+                  </Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link to="/find-fobs">
+                    {" "}
+                    <Typography sx={{ px: 2 }}>Jobs</Typography>
+                  </Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link to="#">
+                    {" "}
+                    <Typography sx={{ px: 2 }}>Services</Typography>
+                  </Link>
+                </MenuItem>
+              </Grid>
             </Menu>
           </Box>
 
