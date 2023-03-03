@@ -127,21 +127,21 @@ const Navigation = () => {
             >
               <Grid container direction="column">
                 <MenuItem>
-                  <Link to="/">
+                  <Link style={{ textDecoration: "none" }} to="/">
                     {" "}
-                    <Typography sx={{ px: 2 }}>Home</Typography>
+                    <Typography sx={{ px: 1 }}>Home</Typography>
                   </Link>
                 </MenuItem>
                 <MenuItem>
-                  <Link to="/find-fobs">
+                  <Link style={{ textDecoration: "none" }} to="find-jobs">
                     {" "}
-                    <Typography sx={{ px: 2 }}>Jobs</Typography>
+                    <Typography sx={{ px: 1 }}>Jobs</Typography>
                   </Link>
                 </MenuItem>
                 <MenuItem>
-                  <Link to="#">
+                  <Link style={{ textDecoration: "none" }} to="#">
                     {" "}
-                    <Typography sx={{ px: 2 }}>Services</Typography>
+                    <Typography sx={{ px: 1 }}>Services</Typography>
                   </Link>
                 </MenuItem>
               </Grid>

@@ -15,13 +15,14 @@ import { useForm } from "react-hook-form";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Translate } from "@mui/icons-material";
 import { useJobPostMutation } from "../../features/job/jobApi";
+import { useNavigate } from "react-router-dom";
 
 const AddPositionForm = () => {
   const { register, handleSubmit, reset } = useForm();
   const [inputFields, setInputFields] = useState([]);
   const [postJob, { isLoading, isError }] = useJobPostMutation();
   console.log(inputFields);
-
+  const navigate = useNavigate();
   const addFields = () => {
     let newfield = [];
 
@@ -50,6 +51,9 @@ const AddPositionForm = () => {
       skills: inputFields,
     };
     postJob({ ...newData, applicants: [], queries: [] });
+    if (data) {
+      navigate("/dashboard");
+    }
   };
   return (
     <Box sx={{ mx: "auto", width: "100%" }}>

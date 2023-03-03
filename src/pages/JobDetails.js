@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
 
 const JobDetails = () => {
   const { id } = useParams();
+  console.log(id);
 
   const { user } = useSelector((state) => state.auth);
 
@@ -46,10 +47,7 @@ const JobDetails = () => {
   const navigate = useNavigate();
   const [applyJob] = useJobApplyMutation();
 
-  const existing = data?.data.applicants.filter(
-    (apply) => apply.email === user.email
-  );
-  console.log(existing);
+  console.log(data);
 
   const handleApply = () => {
     if (user?.userRole === "employee") {
@@ -116,7 +114,7 @@ const JobDetails = () => {
                     <Typography variant="h5" gutterBottom>
                       Required skill
                     </Typography>
-                    <Box sx={{ display: "flex", gap: 2 }}>
+                    <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
                       {data?.data.skills.map((skill) => (
                         <Typography
                           sx={{ border: 1, borderRadius: "23px", px: 2 }}
@@ -155,10 +153,14 @@ const JobDetails = () => {
                       onClick={handleApply}
                       variant="contained"
                       color="primary"
-                      disabled={!existing ? false : true}
+                      // disabled={!existing ? false : true}
                       className={classes.button}
                     >
-                      {existing ? "Already apply" : "Apply Now"}
+                      {data?.data.applicants.find(
+                        (mail) => mail.email === user?.email
+                      )
+                        ? "Already apply"
+                        : "Apply Now"}
                     </Button>
                   </Paper>
                 </Grid>

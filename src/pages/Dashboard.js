@@ -29,6 +29,7 @@ import { signOut } from "firebase/auth";
 import { logout } from "../features/auth/authSlice";
 import auth from "../firebase/firebase.config";
 import Navigation from "./../components/share/Navigation";
+import WorkIcon from "@mui/icons-material/Work";
 
 const drawerWidth = 240;
 
@@ -73,7 +74,19 @@ const Dashboard = (props) => {
           </ListItem>
         </Link>
       </List>
-      {user?.userType === "employee" ? (
+      <List>
+        <Link style={{ textDecoration: "none" }} to="/find-jobs">
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <WorkIcon />
+              </ListItemIcon>
+              <ListItemText>Jobs</ListItemText>
+            </ListItemButton>
+          </ListItem>
+        </Link>
+      </List>
+      {user?.userType === "employee" && (
         <List>
           <Link style={{ textDecoration: "none" }} to="add-position">
             <ListItem disablePadding>
@@ -82,19 +95,6 @@ const Dashboard = (props) => {
                   <ContentPasteSearchIcon />
                 </ListItemIcon>
                 <ListItemText>New position</ListItemText>
-              </ListItemButton>
-            </ListItem>
-          </Link>
-        </List>
-      ) : (
-        <List>
-          <Link style={{ textDecoration: "none" }} to="/find-jobs">
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <HomeIcon />
-                </ListItemIcon>
-                <ListItemText>Jobs</ListItemText>
               </ListItemButton>
             </ListItem>
           </Link>
@@ -224,7 +224,7 @@ const Dashboard = (props) => {
               }}
               to="/make-profile"
             >
-              Please make profile
+              Please make profile click
             </Link>
           </Box>
         </Box>

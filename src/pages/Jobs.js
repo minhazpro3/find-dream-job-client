@@ -3,15 +3,17 @@ import { useGetJobsQuery } from "../features/job/jobApi";
 import { Box, Button, Container, Grid, Typography, Item } from "@mui/material";
 import Navigation from "./../components/share/Navigation";
 import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Jobs = () => {
   const { data, isLoading, isError } = useGetJobsQuery();
+  const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
-  console.log(data);
+  console.log(data, "data");
   return (
     <Box>
       <Navigation />
-      {data?.status ? (
+      {user ? (
         <Container>
           <Box
             sx={{
@@ -88,7 +90,7 @@ const Jobs = () => {
                     </Box>
                     <Button
                       sx={{ border: "1px solid #" }}
-                      onClick={() => navigate(`/job-details/${position._id}`)}
+                      onClick={() => navigate(`/job-details/${position?._id}`)}
                       variant="outlined"
                     >
                       Details
