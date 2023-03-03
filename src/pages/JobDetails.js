@@ -149,19 +149,29 @@ const JobDetails = () => {
                       ullamcorper diam quis ligula mattis, non bibendum lorem
                       aliquet. Proin gravida quam vitae nunc suscipit interdum.
                     </Typography>
-                    <Button
-                      onClick={handleApply}
-                      variant="contained"
-                      color="primary"
-                      // disabled={!existing ? false : true}
-                      className={classes.button}
-                    >
-                      {data?.data.applicants.find(
-                        (mail) => mail.email === user?.email
-                      )
-                        ? "Already apply"
-                        : "Apply Now"}
-                    </Button>
+                    {!user?.userType === "employee" ? (
+                      <Button
+                        onClick={handleApply}
+                        variant="contained"
+                        color="primary"
+                        disabled={
+                          data?.data.applicants.find(
+                            (mail) => mail.email === user?.email
+                          )
+                            ? true
+                            : false
+                        }
+                        className={classes.button}
+                      >
+                        {data?.data.applicants.find(
+                          (mail) => mail.email === user?.email
+                        )
+                          ? "Already apply"
+                          : "Apply Now"}
+                      </Button>
+                    ) : (
+                      <Button variant="contained">You are a Employee</Button>
+                    )}
                   </Paper>
                 </Grid>
               ) : (
