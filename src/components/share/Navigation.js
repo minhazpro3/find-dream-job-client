@@ -163,7 +163,7 @@ const Navigation = () => {
               mx: 1,
             }}
           >
-            {pages.map((page) => (
+            {/* {pages.map((page) => (
               <Typography
                 key={page.id}
                 onClick={handleCloseNavMenu}
@@ -178,7 +178,7 @@ const Navigation = () => {
                   {page?.Page}
                 </Link>
               </Typography>
-            ))}
+            ))} */}
           </Box>
           {user?.email ? (
             <Box sx={{ mx: 1 }}>
@@ -239,7 +239,7 @@ const Navigation = () => {
               onClose={handleCloseUserMenu}
             >
               <MenuItem>
-                <Typography textAlign="center">
+                <Typography sx={{ px: 2 }} textAlign="center">
                   <Link style={{ textDecoration: "none" }} to="/dashboard">
                     Dashboard
                   </Link>
@@ -248,11 +248,15 @@ const Navigation = () => {
               <br />
               <MenuItem onClick={handleCloseUserMenu}>
                 {email ? (
-                  <Typography onClick={handleSignout} textAlign="center">
+                  <Typography
+                    sx={{ px: 2 }}
+                    onClick={handleSignout}
+                    textAlign="center"
+                  >
                     Logout
                   </Typography>
                 ) : (
-                  <Typography textAlign="center">
+                  <Typography sx={{ px: 2 }} textAlign="center">
                     <Link to="login">Login</Link>
                   </Typography>
                 )}

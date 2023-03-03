@@ -21,6 +21,9 @@ import AddBoxIcon from "@mui/icons-material/AddBox";
 import { Link, Outlet } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
 import { useSelector } from "react-redux";
+import HomeIcon from "@mui/icons-material/Home";
+import ContentPasteSearchIcon from "@mui/icons-material/ContentPasteSearch";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const drawerWidth = 240;
 
@@ -44,6 +47,22 @@ const Dashboard = (props) => {
           </ListItemButton>
         </ListItem>
       </List>
+      <List>
+        <ListItem disablePadding>
+          <ListItemButton>
+            <ListItemIcon>
+              <HomeIcon />
+            </ListItemIcon>
+            <ListItemText>
+              {" "}
+              <Link style={{ textDecoration: "none" }} to="/">
+                {" "}
+                Home{" "}
+              </Link>
+            </ListItemText>
+          </ListItemButton>
+        </ListItem>
+      </List>
       {user?.userType === "employee" ? (
         <List>
           <ListItem disablePadding>
@@ -53,7 +72,10 @@ const Dashboard = (props) => {
               </ListItemIcon>
               <ListItemText>
                 {" "}
-                <Link to="add-position"> add new position </Link>
+                <Link style={{ textDecoration: "none" }} to="add-position">
+                  {" "}
+                  add new position{" "}
+                </Link>
               </ListItemText>
             </ListItemButton>
           </ListItem>
@@ -63,16 +85,36 @@ const Dashboard = (props) => {
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                <AddBoxIcon />
+                <ContentPasteSearchIcon />
               </ListItemIcon>
               <ListItemText>
                 {" "}
-                <Link to="/find-jobs"> Find jobs </Link>
+                <Link style={{ textDecoration: "none" }} to="/find-jobs">
+                  {" "}
+                  Find jobs{" "}
+                </Link>
               </ListItemText>
             </ListItemButton>
           </ListItem>
         </List>
       )}
+
+      <List>
+        <ListItem disablePadding>
+          <ListItemButton>
+            <ListItemIcon>
+              <LogoutIcon />
+            </ListItemIcon>
+            <ListItemText>
+              {" "}
+              <Link style={{ textDecoration: "none" }} to="/login">
+                {" "}
+                Logout{" "}
+              </Link>
+            </ListItemText>
+          </ListItemButton>
+        </ListItem>
+      </List>
 
       {/* <Divider /> */}
       {/* <List>
@@ -104,7 +146,6 @@ const Dashboard = (props) => {
       >
         <Toolbar>
           <IconButton
-            color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
@@ -112,9 +153,7 @@ const Dashboard = (props) => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6">
-            Welcome to Dream jobs as a {user?.userType}
-          </Typography>
+          <Typography>Dashboard</Typography>
         </Toolbar>
       </AppBar>
       <Box

@@ -61,7 +61,7 @@ function App() {
           }
         >
           <Route path="add-position" element={<AddPosition />} />
-          <Route path="/dashboard" element={<Profile />} />
+          <Route path="/dashboard/" element={<Profile />} />
         </Route>
 
         <Route
