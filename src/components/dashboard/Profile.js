@@ -13,6 +13,7 @@ import { Edit } from "@material-ui/icons";
 import { Box } from "@mui/material";
 import Navigation from "./../share/Navigation";
 import EditIcon from "@mui/icons-material/Edit";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   avatar: {
@@ -34,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Profile = () => {
   const classes = useStyles();
+  const { user } = useSelector((state) => state.auth);
   return (
     <Grid container direction="column" alignItems="center" spacing={4}>
       <Grid item>
@@ -41,7 +43,7 @@ const Profile = () => {
       </Grid>
       <Grid item>
         <Typography variant="h4" className={classes.name}>
-          John Doe
+          {user?.userName}
         </Typography>
       </Grid>
       <Grid item>

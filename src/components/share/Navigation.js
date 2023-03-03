@@ -3,6 +3,7 @@ import {
   Avatar,
   Box,
   Container,
+  Grid,
   IconButton,
   Menu,
   MenuItem,
@@ -238,29 +239,31 @@ const Navigation = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              <MenuItem>
-                <Typography sx={{ px: 2 }} textAlign="center">
-                  <Link style={{ textDecoration: "none" }} to="/dashboard">
-                    Dashboard
-                  </Link>
-                </Typography>
-              </MenuItem>
-              <br />
-              <MenuItem onClick={handleCloseUserMenu}>
-                {email ? (
-                  <Typography
-                    sx={{ px: 2 }}
-                    onClick={handleSignout}
-                    textAlign="center"
-                  >
-                    Logout
-                  </Typography>
-                ) : (
+              <Grid container direction="column">
+                <MenuItem>
                   <Typography sx={{ px: 2 }} textAlign="center">
-                    <Link to="login">Login</Link>
+                    <Link style={{ textDecoration: "none" }} to="/dashboard">
+                      Dashboard
+                    </Link>
                   </Typography>
-                )}
-              </MenuItem>
+                </MenuItem>
+
+                <MenuItem onClick={handleCloseUserMenu}>
+                  {email ? (
+                    <Typography
+                      sx={{ px: 2 }}
+                      onClick={handleSignout}
+                      textAlign="center"
+                    >
+                      Logout
+                    </Typography>
+                  ) : (
+                    <Typography sx={{ px: 2 }} textAlign="center">
+                      <Link to="login">Login</Link>
+                    </Typography>
+                  )}
+                </MenuItem>
+              </Grid>
             </Menu>
           </Box>
         </Toolbar>
