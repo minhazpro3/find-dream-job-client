@@ -30,6 +30,7 @@ import { logout } from "../features/auth/authSlice";
 import auth from "../firebase/firebase.config";
 import Navigation from "./../components/share/Navigation";
 import WorkIcon from "@mui/icons-material/Work";
+import CircleNotificationsIcon from "@mui/icons-material/CircleNotifications";
 
 const drawerWidth = 240;
 
@@ -87,18 +88,32 @@ const Dashboard = (props) => {
         </Link>
       </List>
       {user?.userType === "employee" && (
-        <List>
-          <Link style={{ textDecoration: "none" }} to="add-position">
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <ContentPasteSearchIcon />
-                </ListItemIcon>
-                <ListItemText>New position</ListItemText>
-              </ListItemButton>
-            </ListItem>
-          </Link>
-        </List>
+        <Box>
+          <List>
+            <Link style={{ textDecoration: "none" }} to="add-position">
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <ContentPasteSearchIcon />
+                  </ListItemIcon>
+                  <ListItemText>New position</ListItemText>
+                </ListItemButton>
+              </ListItem>
+            </Link>
+          </List>
+          <List>
+            <Link style={{ textDecoration: "none" }} to="applicants">
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <CircleNotificationsIcon />
+                  </ListItemIcon>
+                  <ListItemText>Applicants</ListItemText>
+                </ListItemButton>
+              </ListItem>
+            </Link>
+          </List>
+        </Box>
       )}
 
       <List>
