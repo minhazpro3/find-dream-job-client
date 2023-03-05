@@ -132,12 +132,14 @@ const Navigation = () => {
                     <Typography sx={{ px: 1 }}>Home</Typography>
                   </Link>
                 </MenuItem>
-                <MenuItem>
-                  <Link style={{ textDecoration: "none" }} to="find-jobs">
-                    {" "}
-                    <Typography sx={{ px: 1 }}>Jobs</Typography>
-                  </Link>
-                </MenuItem>
+                {user?.email && (
+                  <MenuItem>
+                    <Link style={{ textDecoration: "none" }} to="find-jobs">
+                      {" "}
+                      <Typography sx={{ px: 1 }}>Jobs</Typography>
+                    </Link>
+                  </MenuItem>
+                )}
                 <MenuItem>
                   <Link style={{ textDecoration: "none" }} to="#">
                     {" "}

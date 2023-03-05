@@ -29,77 +29,85 @@ const Jobs = () => {
             </Typography>
           </Box>
 
-          <Grid container spacing={{ xs: 2, sm: 6 }}>
-            {data?.data.map((position, index) => (
-              <Grid item xs={12} sm={6} md={6} key={index}>
-                <Box sx={{ bgcolor: "#e3f2fd", p: 2, borderRadius: "10px" }}>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <Box>
-                      <Typography
-                        sx={{
-                          border: "1px solid #42a5f5",
-                          px: 2,
-
-                          borderRadius: "25px",
-                        }}
-                        variant="h6"
-                      >
-                        {position?.position}
-                      </Typography>
-                      <Typography sx={{ px: 2, my: 1 }}>
-                        by {position?.companyName}
-                      </Typography>
-                    </Box>
-                    <Box>
-                      <Typography>{position?.location}</Typography>
-                      <Box sx={{ display: "flex", alignItems: "center" }}>
+          {data?.data.length ? (
+            <Grid container spacing={{ xs: 2, sm: 6 }}>
+              {data?.data.map((position, index) => (
+                <Grid item xs={12} sm={6} md={6} key={index}>
+                  <Box sx={{ bgcolor: "#e3f2fd", p: 2, borderRadius: "10px" }}>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <Box>
                         <Typography
                           sx={{
-                            width: "10px",
-                            height: "10px",
-                            borderRadius: "10px",
-                            bgcolor: `${
-                              position.location === "remote"
-                                ? "#d50000"
-                                : " #00c853"
-                            }`,
+                            border: "1px solid #42a5f5",
+                            px: 2,
 
-                            mr: 1,
+                            borderRadius: "25px",
                           }}
-                        ></Typography>
-                        <Typography variant="body2">Active </Typography>
+                          variant="h6"
+                        >
+                          {position?.position}
+                        </Typography>
+                        <Typography sx={{ px: 2, my: 1 }}>
+                          by {position?.companyName}
+                        </Typography>
+                      </Box>
+                      <Box>
+                        <Typography>{position?.location}</Typography>
+                        <Box sx={{ display: "flex", alignItems: "center" }}>
+                          <Typography
+                            sx={{
+                              width: "10px",
+                              height: "10px",
+                              borderRadius: "10px",
+                              bgcolor: `${
+                                position.location === "remote"
+                                  ? "#d50000"
+                                  : " #00c853"
+                              }`,
+
+                              mr: 1,
+                            }}
+                          ></Typography>
+                          <Typography variant="body2">Active </Typography>
+                        </Box>
                       </Box>
                     </Box>
-                  </Box>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      my: 1,
-                    }}
-                  >
-                    <Box>
-                      <Typography sx={{ px: 2 }}>
-                        {position?.employType}
-                      </Typography>
-                    </Box>
-                    <Button
-                      sx={{ border: "1px solid #" }}
-                      onClick={() => navigate(`/job-details/${position?._id}`)}
-                      variant="outlined"
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        my: 1,
+                      }}
                     >
-                      Details
-                    </Button>
+                      <Box>
+                        <Typography sx={{ px: 2 }}>
+                          {position?.employType}
+                        </Typography>
+                      </Box>
+                      <Button
+                        sx={{ border: "1px solid #" }}
+                        onClick={() =>
+                          navigate(`/job-details/${position?._id}`)
+                        }
+                        variant="outlined"
+                      >
+                        Details
+                      </Button>
+                    </Box>
                   </Box>
-                </Box>
-              </Grid>
-            ))}
-          </Grid>
+                </Grid>
+              ))}
+            </Grid>
+          ) : (
+            <Box sx={{ textAlign: "center" }}>
+              <Typography>No job post yet</Typography>
+            </Box>
+          )}
         </Container>
       ) : (
         <Box sx={{ textAlign: "center", my: 6 }}>
