@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { useSelector } from "react-redux";
 import { Box, CircularProgress } from "@mui/material";
 import { Navigate, useLocation } from "react-router-dom";
@@ -7,8 +7,6 @@ import Navigation from "../components/share/Navigation";
 const PrivateRoute = ({ children }) => {
   const { email, isLoading } = useSelector((state) => state.auth);
   const { pathname } = useLocation();
-
-  console.log(isLoading);
 
   if (isLoading) {
     return (

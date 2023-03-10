@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   List,
@@ -29,7 +29,7 @@ const Applicants = () => {
   const navigate = useNavigate();
 
   const { data, isLoading, isError } = useGetJobsQuery();
-  console.log(data);
+
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
@@ -43,8 +43,8 @@ const Applicants = () => {
       <Divider />
       {data?.data.length ? (
         <List>
-          {data?.data.map((applicant) => (
-            <React.Fragment key={applicant.name}>
+          {data?.data.map((applicant, index) => (
+            <React.Fragment key={index}>
               <ListItem
                 onClick={() =>
                   navigate(`/dashboard/applicant-details/${applicant._id}`)

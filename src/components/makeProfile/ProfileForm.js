@@ -446,7 +446,7 @@ const countries = [
 
 const ProfileForm = ({ setUserForm }) => {
   const [phone, setPhone] = useState("");
-  console.log(phone);
+
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -455,8 +455,6 @@ const ProfileForm = ({ setUserForm }) => {
   const { userType, email } = useSelector((state) => state.auth);
 
   const [file, setFile] = useState(null);
-
-  console.log(file);
 
   const handleUploadResume = (e) => {
     const formData = new FormData();
@@ -487,7 +485,7 @@ const ProfileForm = ({ setUserForm }) => {
         userType: userType,
         userPosition: data.userPosition,
       };
-      // console.log(newData);
+
       dispatch(postUser(newData));
     } else {
       const newData = {
@@ -503,7 +501,7 @@ const ProfileForm = ({ setUserForm }) => {
         userType: userType,
         linkedin: data.linkedinUrl,
       };
-      // console.log(newData);
+
       dispatch(postUser(newData));
     }
   };

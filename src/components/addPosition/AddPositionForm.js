@@ -21,7 +21,7 @@ const AddPositionForm = () => {
   const { register, handleSubmit, reset } = useForm();
   const [inputFields, setInputFields] = useState([]);
   const [postJob, { isLoading, isError }] = useJobPostMutation();
-  console.log(inputFields);
+
   const navigate = useNavigate();
   const addFields = () => {
     let newfield = [];

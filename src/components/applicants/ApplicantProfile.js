@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-target-blank */
-import React from "react";
+import React, { Component } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import Grid from "@material-ui/core/Grid";
@@ -45,7 +45,7 @@ const ApplicantProfile = () => {
   const { id } = useParams();
   const classes = useStyles();
   const { data, isLoading, isError } = useGetUserByIdQuery(id);
-  console.log(data);
+
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>

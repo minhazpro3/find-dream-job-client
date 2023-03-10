@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -27,7 +27,6 @@ export const ApplicantDetails = () => {
   const navigate = useNavigate();
 
   const { data, isLoading, isError } = useGetJobByIdQuery(id);
-  console.log(data);
 
   return (
     <div>
@@ -43,8 +42,8 @@ export const ApplicantDetails = () => {
           </TableHead>
           {data?.data.applicants.length ? (
             <TableBody sx={{ cursor: "pointer" }}>
-              {data?.data.applicants.map((row) => (
-                <TableRow key={row._id}>
+              {data?.data.applicants.map((row, index) => (
+                <TableRow key={index}>
                   <TableCell component="th" scope="row">
                     {row.name}
                   </TableCell>

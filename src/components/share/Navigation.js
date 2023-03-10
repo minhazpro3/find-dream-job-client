@@ -11,7 +11,7 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { Component } from "react";
 import { Button } from "@mui/material";
 
 import MenuIcon from "@mui/icons-material/Menu";

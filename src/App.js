@@ -29,13 +29,12 @@ import ApplicantProfile from "./components/applicants/ApplicantProfile";
 function App() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
-  console.log(user);
+
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         dispatch(setUser(user?.email));
         dispatch(getUser(user?.email));
-        console.log(user.email);
       } else {
         dispatch(toggleLoading());
       }

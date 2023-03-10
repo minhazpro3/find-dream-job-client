@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import AddPositionForm from "../components/addPosition/AddPositionForm";
 import { Box } from "@mui/material";
 

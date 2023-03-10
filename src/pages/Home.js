@@ -1,25 +1,10 @@
-import React from "react";
-import login from "../utils/images/login.png";
+import React, { Component } from "react";
 import Navigation from "./../components/share/Navigation";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  Grid,
-  Typography,
-  Button,
-  Card,
-  Toolbar,
-  IconButton,
-} from "@material-ui/core";
+import { Grid, Typography, Button, Card } from "@material-ui/core";
 import { Box } from "@mui/system";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import SearchIcon from "@mui/icons-material/Search";
-import {
-  AppBar,
-  CardActions,
-  CardContent,
-  Container,
-  TextField,
-} from "@mui/material";
+
+import { CardActions, CardContent, Container, TextField } from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
   root: {

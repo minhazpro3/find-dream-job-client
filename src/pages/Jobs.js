@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { useGetJobsQuery } from "../features/job/jobApi";
 import { Box, Button, Container, Grid, Typography, Item } from "@mui/material";
 import Navigation from "./../components/share/Navigation";
@@ -9,7 +9,7 @@ const Jobs = () => {
   const { data, isLoading, isError } = useGetJobsQuery();
   const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
-  console.log(data, "data");
+
   return (
     <Box>
       <Navigation />

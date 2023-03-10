@@ -14,13 +14,10 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { Component } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
-import AddBoxIcon from "@mui/icons-material/AddBox";
+
 import { Link, Outlet } from "react-router-dom";
-import userEvent from "@testing-library/user-event";
 import { useDispatch, useSelector } from "react-redux";
 import HomeIcon from "@mui/icons-material/Home";
 import ContentPasteSearchIcon from "@mui/icons-material/ContentPasteSearch";

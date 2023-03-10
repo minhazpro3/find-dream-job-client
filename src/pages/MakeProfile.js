@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { Typography } from "@mui/material";
 import ChooseType from "../components/makeProfile/ChooseType";
 import { useSelector } from "react-redux";
@@ -14,7 +14,6 @@ const MakeProfile = () => {
     navigate("/dashboard");
   }
 
-  console.log(user);
   return (
     <div>
       <Navigation />

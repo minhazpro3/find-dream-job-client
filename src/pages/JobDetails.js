@@ -1,6 +1,6 @@
 import { Box, Button, Skeleton, Typography } from "@mui/material";
 
-import React from "react";
+import React, { Component } from "react";
 import { toast } from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -38,7 +38,6 @@ const JobDetails = () => {
   const { id } = useParams();
 
   const { user } = useSelector((state) => state.auth);
-  console.log(user);
 
   const { data, isLoading, isError } = useGetJobByIdQuery(id);
 
@@ -113,9 +112,9 @@ const JobDetails = () => {
                       Required skill
                     </Typography>
                     <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
-                      {data?.data.skills.map((skill) => (
+                      {data?.data.skills.map((skill, index) => (
                         <Typography
-                          key={skill._id}
+                          key={index}
                           sx={{ border: 1, borderRadius: "23px", px: 2 }}
                           variant="subtitle1"
                           gutterBottom

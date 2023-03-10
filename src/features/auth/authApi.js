@@ -1,11 +1,5 @@
 import apiSlice from "./../api/apiSlice";
-import {
-  getUser,
-  setRouteChange,
-  setUser,
-  setUserLocal,
-  toggleLoading,
-} from "./authSlice";
+import { setRouteChange, setUserLocal } from "./authSlice";
 
 const authApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
