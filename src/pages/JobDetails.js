@@ -38,6 +38,7 @@ const JobDetails = () => {
   const { id } = useParams();
 
   const { user } = useSelector((state) => state.auth);
+  console.log(user);
 
   const { data, isLoading, isError } = useGetJobByIdQuery(id);
 
@@ -114,6 +115,7 @@ const JobDetails = () => {
                     <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
                       {data?.data.skills.map((skill) => (
                         <Typography
+                          key={skill._id}
                           sx={{ border: 1, borderRadius: "23px", px: 2 }}
                           variant="subtitle1"
                           gutterBottom

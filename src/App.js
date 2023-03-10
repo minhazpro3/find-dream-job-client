@@ -24,6 +24,7 @@ import JobDetails from "./pages/JobDetails";
 import Profile from "./components/dashboard/Profile";
 import Applicants from "./pages/Applicants";
 import { ApplicantDetails } from "./components/applicants/ApplicantDetails";
+import ApplicantProfile from "./components/applicants/ApplicantProfile";
 
 function App() {
   const dispatch = useDispatch();
@@ -63,6 +64,7 @@ function App() {
           }
         >
           <Route path="add-position" element={<AddPosition />} />
+          <Route path="applicant-profile/:id" element={<ApplicantProfile />} />
           <Route
             path="/dashboard/applicant-details/:id"
             element={<ApplicantDetails />}
