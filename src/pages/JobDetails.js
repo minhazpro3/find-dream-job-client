@@ -40,18 +40,26 @@ const JobDetails = () => {
   const { user } = useSelector((state) => state.auth);
 
   const { data, isLoading, isError } = useGetJobByIdQuery(id);
+  const dt = data?.data.applicants.filter((mail) => mail.email === user?.email);
+
+  if (dt) {
+    console.log(dt);
+  }
 
   const { position, companyName, _id } = data?.data || {};
   const navigate = useNavigate();
   const [applyJob] = useJobApplyMutation();
 
+  const applied = data?.data.applicants.find((applied) => applied.email);
+  console.log(applied);
+
   const handleApply = () => {
-    if (user?.userRole === "employee") {
+    if (user?.userType === "employee") {
       toast.error("Only candidate can be apply");
       return;
     }
 
-    if (user?.userRole === "") {
+    if (user?.userType === "") {
       navigate("/login");
       return;
     }
@@ -148,21 +156,25 @@ const JobDetails = () => {
                       aliquet. Proin gravida quam vitae nunc suscipit interdum.
                     </Typography>
 
-                    <Button
-                      onClick={handleApply}
-                      variant="contained"
-                      color="primary"
-                      // disabled={
-                      //   data?.data.applicants.find(
-                      //     (mail) => mail.email === user?.email
-                      //   )
-                      //     ? true
-                      //     : false
-                      // }
-                      className={classes.button}
-                    >
-                      Apply
-                    </Button>
+                    {dt ? (
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        className={classes.button}
+                        disabled={true}
+                      >
+                        Applied
+                      </Button>
+                    ) : (
+                      <Button
+                        onClick={handleApply}
+                        variant="contained"
+                        color="primary"
+                        className={classes.button}
+                      >
+                        Apply Now
+                      </Button>
+                    )}
                   </Paper>
                 </Grid>
               ) : (
