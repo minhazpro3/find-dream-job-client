@@ -10,9 +10,10 @@ import {
   Divider,
   Grid,
 } from "@material-ui/core";
-import { useGetJobsQuery } from "../features/job/jobApi";
+import { useGetJobByEmailQuery, useGetJobsQuery } from "../features/job/jobApi";
 import { useNavigate } from "react-router-dom";
 import { Box } from "@mui/material";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,8 +28,10 @@ const useStyles = makeStyles((theme) => ({
 const Applicants = () => {
   const classes = useStyles();
   const navigate = useNavigate();
+  const { user } = useSelector((state) => state.auth);
+  const { data, isLoading, isError } = useGetJobByEmailQuery(user.email);
 
-  const { data, isLoading, isError } = useGetJobsQuery();
+  console.log(data);
 
   return (
     <div className={classes.root}>
@@ -68,7 +71,7 @@ const Applicants = () => {
         </List>
       ) : (
         <Box sx={{ textAlign: "center", my: 6 }}>
-          <Typography>Job post not yet</Typography>
+          <Typography>You do not have job post</Typography>
         </Box>
       )}
     </div>

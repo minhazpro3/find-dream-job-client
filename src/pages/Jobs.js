@@ -6,7 +6,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Jobs = () => {
-  const { data, isLoading, isError } = useGetJobsQuery();
+  const { data, isLoading, isError } = useGetJobsQuery({
+    pollingInterval: 1000,
+  });
   const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
 

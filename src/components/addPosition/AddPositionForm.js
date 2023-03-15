@@ -16,11 +16,14 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { Translate } from "@mui/icons-material";
 import { useJobPostMutation } from "../../features/job/jobApi";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const AddPositionForm = () => {
   const { register, handleSubmit, reset } = useForm();
   const [inputFields, setInputFields] = useState([]);
   const [postJob, { isLoading, isError }] = useJobPostMutation();
+  const { user } = useSelector((state) => state.auth);
+  console.log(user);
 
   const navigate = useNavigate();
   const addFields = () => {
@@ -49,6 +52,7 @@ const AddPositionForm = () => {
       salaryRange: data.salaryRange,
       workLevel: data.workLevel,
       skills: inputFields,
+      email: user.email,
     };
     postJob({ ...newData, applicants: [], queries: [] });
     if (data) {
@@ -60,7 +64,7 @@ const AddPositionForm = () => {
       <Box>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Typography sx={{ my: 3, fontWeight: "medium" }} variant="h5">
-            Register as a
+            Publish a new job
           </Typography>
 
           <Box sx={{ display: "flex", justifyContent: "center" }}>

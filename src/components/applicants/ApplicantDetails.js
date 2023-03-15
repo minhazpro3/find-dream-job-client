@@ -9,7 +9,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetJobByIdQuery } from "../../features/job/jobApi";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Skeleton, Typography } from "@mui/material";
 
 const useStyles = makeStyles({
   table: {
@@ -17,17 +17,27 @@ const useStyles = makeStyles({
   },
 });
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
 export const ApplicantDetails = () => {
   const { id } = useParams();
   const classes = useStyles();
   const navigate = useNavigate();
 
   const { data, isLoading, isError } = useGetJobByIdQuery(id);
-
+  console.log(data);
+  if (isLoading) {
+    return (
+      <Box>
+        <Skeleton variant="rectangular" width="100%" height={50} />
+        <Skeleton
+          sx={{ my: 1 }}
+          variant="rectangular"
+          width="100%"
+          height={50}
+        />
+        <Skeleton variant="rectangular" width="100%" height={50} />
+      </Box>
+    );
+  }
   return (
     <div>
       <TableContainer component={Paper}>

@@ -1,6 +1,6 @@
 import { Box, Button, Skeleton, Typography } from "@mui/material";
 
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { toast } from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -36,22 +36,25 @@ const useStyles = makeStyles((theme) => ({
 
 const JobDetails = () => {
   const { id } = useParams();
+  const [fetch, setFetch] = useState(false);
 
   const { user } = useSelector((state) => state.auth);
+  console.log(user);
+  const { data, isLoading, isError } = useGetJobByIdQuery(
+    id,
+    fetch && {
+      pollingInterval: 100,
+    }
+  );
+  console.log(data);
 
-  const { data, isLoading, isError } = useGetJobByIdQuery(id);
-  const dt = data?.data.applicants.filter((mail) => mail.email === user?.email);
-
-  if (dt) {
-    console.log(dt);
-  }
-
-  const { position, companyName, _id } = data?.data || {};
+  const { _id } = data?.data || {};
   const navigate = useNavigate();
   const [applyJob] = useJobApplyMutation();
 
-  const applied = data?.data.applicants.find((applied) => applied.email);
-  console.log(applied);
+  const applied = data?.data.applicants.find(
+    (applied) => applied.email === user.email
+  );
 
   const handleApply = () => {
     if (user?.userType === "employee") {
@@ -70,8 +73,10 @@ const JobDetails = () => {
       name: user.userName,
       jobId: _id,
     };
+    console.log(data);
 
     applyJob(data);
+    setFetch(true);
   };
 
   const classes = useStyles();
@@ -156,7 +161,7 @@ const JobDetails = () => {
                       aliquet. Proin gravida quam vitae nunc suscipit interdum.
                     </Typography>
 
-                    {dt ? (
+                    {applied ? (
                       <Button
                         variant="contained"
                         color="primary"
