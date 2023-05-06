@@ -115,7 +115,7 @@ const Jobs = () => {
         <Box sx={{ textAlign: "center", my: 6 }}>
           <Typography variant="h5">Your have to make profile!</Typography>
           <Link style={{ textDecoration: "none" }} to="/make-profile">
-            click
+            click profile
           </Link>
         </Box>
       )}
