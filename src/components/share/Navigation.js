@@ -134,7 +134,7 @@ const Navigation = () => {
                 </MenuItem>
                 {user?.email && (
                   <MenuItem>
-                    <Link style={{ textDecoration: "none" }} to="find-jobs">
+                    <Link style={{ textDecoration: "none" }} to="/find-jobs">
                       {" "}
                       <Typography sx={{ px: 1 }}>Jobs</Typography>
                     </Link>
@@ -272,7 +272,7 @@ const Navigation = () => {
                     </Typography>
                   ) : (
                     <Typography sx={{ px: 2 }} textAlign="center">
-                      <Link to="login">Login</Link>
+                      <Link to="/login">Login</Link>
                     </Typography>
                   )}
                 </MenuItem>
